@@ -11,10 +11,15 @@ public class Flow {
 
 	@Id
 	private String id;
+	private String description;
 	private List<Step> steps;
 
 	public String getId() {
 		return id;
+	}
+
+	public String getDescription() {
+		return description;
 	}
 
 	public List<Step> getSteps() {

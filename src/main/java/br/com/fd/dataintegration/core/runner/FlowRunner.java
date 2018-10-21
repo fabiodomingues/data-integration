@@ -1,10 +1,15 @@
 package br.com.fd.dataintegration.core.runner;
 
 import br.com.fd.dataintegration.core.flow.Flow;
-import br.com.fd.dataintegration.core.step.JsonInput;
-import br.com.fd.dataintegration.core.step.JsonOutput;
-import br.com.fd.dataintegration.core.step.RestClient;
+import br.com.fd.dataintegration.core.step.json.input.JsonInput;
+import br.com.fd.dataintegration.core.step.json.input.JsonInputRunner;
+import br.com.fd.dataintegration.core.step.json.output.JsonOutput;
+import br.com.fd.dataintegration.core.step.mongodb.MongoDBOutput;
+import br.com.fd.dataintegration.core.step.mongodb.MongoDBOutputRunner;
+import br.com.fd.dataintegration.core.step.rest.RestClient;
 import br.com.fd.dataintegration.core.step.Step;
+import br.com.fd.dataintegration.core.step.json.output.JsonOutputRunner;
+import br.com.fd.dataintegration.core.step.rest.RestClientRunner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -33,6 +38,7 @@ public class FlowRunner {
 			case JsonInput.TYPE: return new JsonInputRunner();
 			case JsonOutput.TYPE: return new JsonOutputRunner();
 			case RestClient.TYPE: return new RestClientRunner();
+			case MongoDBOutput.TYPE: return new MongoDBOutputRunner();
 		}
 
 		throw new UnknownStepType();

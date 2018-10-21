@@ -1,7 +1,7 @@
-package br.com.fd.dataintegration.core.runner;
+package br.com.fd.dataintegration.core.step.json.output;
 
-import br.com.fd.dataintegration.core.step.JsonOutput;
-import br.com.fd.dataintegration.core.step.JsonOutputField;
+import br.com.fd.dataintegration.core.runner.FlowContext;
+import br.com.fd.dataintegration.core.runner.Runner;
 import br.com.fd.dataintegration.core.table.Cell;
 import br.com.fd.dataintegration.core.table.Row;
 import com.eclipsesource.json.JsonArray;

@@ -1,7 +1,9 @@
-package br.com.fd.dataintegration.core.runner;
+package br.com.fd.dataintegration.core.step.rest;
 
-import br.com.fd.dataintegration.core.step.ApplicationType;
-import br.com.fd.dataintegration.core.step.RestClient;
+import br.com.fd.dataintegration.core.runner.FlowContext;
+import br.com.fd.dataintegration.core.runner.Runner;
+import br.com.fd.dataintegration.core.step.rest.ApplicationType;
+import br.com.fd.dataintegration.core.step.rest.RestClient;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import com.mashape.unirest.request.GetRequest;
@@ -64,9 +66,6 @@ public class RestClientRunner implements Runner<RestClient> {
 
 	private void doPost(RestClient restClient, FlowContext context, String body) {
 		try {
-
-			if (context.get(restClient.getBodyVariable()) instanceof List) {
-			}
 
 			HttpRequestWithBody request = post(restClient.getUrl());
 

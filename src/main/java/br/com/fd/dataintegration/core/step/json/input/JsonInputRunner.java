@@ -1,7 +1,7 @@
-package br.com.fd.dataintegration.core.runner;
+package br.com.fd.dataintegration.core.step.json.input;
 
-import br.com.fd.dataintegration.core.step.JsonInput;
-import br.com.fd.dataintegration.core.step.JsonInputField;
+import br.com.fd.dataintegration.core.runner.FlowContext;
+import br.com.fd.dataintegration.core.runner.Runner;
 import br.com.fd.dataintegration.core.table.Cell;
 import br.com.fd.dataintegration.core.table.Row;
 import com.jayway.jsonpath.JsonPath;

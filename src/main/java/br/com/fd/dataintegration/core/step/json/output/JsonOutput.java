@@ -1,4 +1,6 @@
-package br.com.fd.dataintegration.core.step;
+package br.com.fd.dataintegration.core.step.json.output;
+
+import br.com.fd.dataintegration.core.step.Step;
 
 import java.util.List;
 

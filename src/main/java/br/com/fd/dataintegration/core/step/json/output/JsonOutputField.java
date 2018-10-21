@@ -1,4 +1,4 @@
-package br.com.fd.dataintegration.core.step;
+package br.com.fd.dataintegration.core.step.json.output;
 
 public class JsonOutputField {
 
