@@ -12,10 +12,11 @@ public class JoinTableRunner implements Runner<JoinTable> {
 
 	@Override
 	public void run(JoinTable joinTable, FlowContext context) {
-
-		if ((joinTable.getKeysLeftTable() == null || joinTable.getKeysRightTable() == null) ||
+		if (
+				(joinTable.getKeysLeftTable() == null || joinTable.getKeysRightTable() == null) ||
 				(joinTable.getKeysLeftTable().isEmpty() || joinTable.getKeysRightTable().isEmpty()) ||
-				(joinTable.getKeysLeftTable().size() != joinTable.getKeysRightTable().size())) {
+				(joinTable.getKeysLeftTable().size() != joinTable.getKeysRightTable().size())
+		) {
 			throw new RuntimeException("JoinTableRunner.Error.BadStructure");
 		}
 
