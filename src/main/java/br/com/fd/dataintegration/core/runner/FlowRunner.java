@@ -1,6 +1,8 @@
 package br.com.fd.dataintegration.core.runner;
 
 import br.com.fd.dataintegration.core.flow.Flow;
+import br.com.fd.dataintegration.core.step.join.JoinTable;
+import br.com.fd.dataintegration.core.step.join.JoinTableRunner;
 import br.com.fd.dataintegration.core.step.json.input.JsonInput;
 import br.com.fd.dataintegration.core.step.json.input.JsonInputRunner;
 import br.com.fd.dataintegration.core.step.json.output.JsonOutput;
@@ -39,6 +41,7 @@ public class FlowRunner {
 			case JsonOutput.TYPE: return new JsonOutputRunner();
 			case RestClient.TYPE: return new RestClientRunner();
 			case MongoDBOutput.TYPE: return new MongoDBOutputRunner();
+			case JoinTable.TYPE: return new JoinTableRunner();
 		}
 
 		throw new UnknownStepType();

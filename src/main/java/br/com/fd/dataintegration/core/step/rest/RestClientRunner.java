@@ -10,6 +10,7 @@ import com.mashape.unirest.request.GetRequest;
 import com.mashape.unirest.request.HttpRequest;
 import com.mashape.unirest.request.HttpRequestWithBody;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.mashape.unirest.http.Unirest.*;
@@ -56,15 +57,26 @@ public class RestClientRunner implements Runner<RestClient> {
 
 	private void doPost(RestClient restClient, FlowContext context) {
 		if (context.get(restClient.getBodyVariable()) instanceof List) {
+			List<String> responseList = new ArrayList<>();
+
 			for (String body : (List<String>) context.get(restClient.getBodyVariable())) {
-				doPost(restClient, context, body);
+				HttpResponse<String> httpResponse = doPost(restClient, context, body);
+				responseList.add(httpResponse.getBody());
+			}
+
+			if (restClient.getResponseVariable() != null && !restClient.getResponseVariable().isEmpty()) {
+				context.put(restClient.getResponseVariable(), responseList);
 			}
 		} else {
-			doPost(restClient, context, (String) context.get(restClient.getBodyVariable()));
+			HttpResponse<String> httpResponse = doPost(restClient, context, (String) context.get(restClient.getBodyVariable()));
+
+			if (restClient.getResponseVariable() != null && !restClient.getResponseVariable().isEmpty()) {
+				context.put(restClient.getResponseVariable(), httpResponse.getBody());
+			}
 		}
 	}
 
-	private void doPost(RestClient restClient, FlowContext context, String body) {
+	private HttpResponse<String> doPost(RestClient restClient, FlowContext context, String body) {
 		try {
 
 			HttpRequestWithBody request = post(restClient.getUrl());
@@ -75,13 +87,9 @@ public class RestClientRunner implements Runner<RestClient> {
 
 			request.body(body);
 
-			HttpResponse<String> response = request.asString();
-
-			if (restClient.getResponseVariable() != null && !restClient.getResponseVariable().isEmpty()) {
-				context.put(restClient.getResponseVariable(), response.getBody());
-			}
+			return request.asString();
 		} catch (UnirestException e) {
-			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
 	}
 

@@ -14,9 +14,21 @@ public class JsonInputRunner implements Runner<JsonInput> {
 
 	@Override
 	public void run(JsonInput jsonInput, FlowContext context) {
-		System.out.println("JsonInputRunner.run(...)");
+		List<Row> rows = new ArrayList<>();
 
-		String json = (String) context.get(jsonInput.getInputVariable());
+		if (context.get(jsonInput.getInputVariable()) instanceof List) {
+			for (String json : (List<String>) context.get(jsonInput.getInputVariable())) {
+				rows.addAll(processJson(jsonInput, context, json));
+			}
+		} else {
+			String json = (String) context.get(jsonInput.getInputVariable());
+			rows.addAll(processJson(jsonInput, context, json));
+		}
+
+		context.put(jsonInput.getOutputVariable(), rows);
+	}
+
+	private List<Row> processJson(JsonInput jsonInput, FlowContext context, String json) {
 		System.out.println(jsonInput);
 
 		ReadContext readContext = JsonPath.parse(json);
@@ -49,7 +61,7 @@ public class JsonInputRunner implements Runner<JsonInput> {
 			rows.add(row);
 		}
 
-		context.put(jsonInput.getOutputVariable(), rows);
+		return rows;
 	}
 
 }

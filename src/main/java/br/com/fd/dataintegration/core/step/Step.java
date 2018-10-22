@@ -1,5 +1,6 @@
 package br.com.fd.dataintegration.core.step;
 
+import br.com.fd.dataintegration.core.step.join.JoinTable;
 import br.com.fd.dataintegration.core.step.json.input.JsonInput;
 import br.com.fd.dataintegration.core.step.json.output.JsonOutput;
 import br.com.fd.dataintegration.core.step.mongodb.MongoDBOutput;
@@ -13,14 +14,16 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 		include = JsonTypeInfo.As.EXISTING_PROPERTY,
 		property = "type")
 @JsonSubTypes({
-		@Type(value = JsonInput.class, name = "JsonInput"),
-		@Type(value = JsonOutput.class, name = "JsonOutput"),
-		@Type(value = RestClient.class, name = "RestClient"),
-		@Type(value = MongoDBOutput.class, name = "MongoDBOutput")
+		@Type(value = JsonInput.class, name = JsonInput.TYPE),
+		@Type(value = JsonOutput.class, name = JsonOutput.TYPE),
+		@Type(value = RestClient.class, name = RestClient.TYPE),
+		@Type(value = MongoDBOutput.class, name = MongoDBOutput.TYPE),
+		@Type(value = JoinTable.class, name = JoinTable.TYPE)
 })
 public abstract class Step {
 
 	private String type;
+	private String name;
 
 	public Step(String type) {
 		this.type = type;
@@ -28,6 +31,10 @@ public abstract class Step {
 
 	public String getType() {
 		return type;
+	}
+
+	public String getName() {
+		return name;
 	}
 
 }
