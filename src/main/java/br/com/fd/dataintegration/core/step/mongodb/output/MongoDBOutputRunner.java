@@ -1,4 +1,4 @@
-package br.com.fd.dataintegration.core.step.mongodb;
+package br.com.fd.dataintegration.core.step.mongodb.output;
 
 import br.com.fd.dataintegration.core.runner.FlowContext;
 import br.com.fd.dataintegration.core.runner.Runner;
@@ -29,7 +29,7 @@ public class MongoDBOutputRunner implements Runner<MongoDBOutput> {
 		for (Row row : rows) {
 			Document dbObject = new Document();
 
-			for (MongoDBFields field : mongoDBOutput.getFields()) {
+			for (MongoDBOutputField field : mongoDBOutput.getFields()) {
 				Cell cell = row.get(field.getName());
 				dbObject.append(field.getName(), cell.getValue());
 			}

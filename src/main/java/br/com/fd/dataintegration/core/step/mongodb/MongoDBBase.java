@@ -1,13 +1,8 @@
 package br.com.fd.dataintegration.core.step.mongodb;
 
 import br.com.fd.dataintegration.core.step.Step;
-import br.com.fd.dataintegration.core.step.json.input.JsonInput;
 
-import java.util.List;
-
-public class MongoDBOutput extends Step {
-
-	public static final String TYPE = "MongoDBOutput";
+public class MongoDBBase extends Step {
 
 	private String host;
 	private Integer port;
@@ -15,11 +10,9 @@ public class MongoDBOutput extends Step {
 	private String password;
 	private String database;
 	private String collection;
-	private String inputVariable;
-	private List<MongoDBFields> fields;
 
-	public MongoDBOutput() {
-		super(MongoDBOutput.TYPE);
+	public MongoDBBase(String type) {
+		super(type);
 	}
 
 	public String getHost() {
@@ -44,13 +37,5 @@ public class MongoDBOutput extends Step {
 
 	public String getCollection() {
 		return collection;
-	}
-
-	public String getInputVariable() {
-		return inputVariable;
-	}
-
-	public List<MongoDBFields> getFields() {
-		return fields;
 	}
 }

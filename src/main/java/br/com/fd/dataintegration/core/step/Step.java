@@ -3,7 +3,8 @@ package br.com.fd.dataintegration.core.step;
 import br.com.fd.dataintegration.core.step.join.JoinTable;
 import br.com.fd.dataintegration.core.step.json.input.JsonInput;
 import br.com.fd.dataintegration.core.step.json.output.JsonOutput;
-import br.com.fd.dataintegration.core.step.mongodb.MongoDBOutput;
+import br.com.fd.dataintegration.core.step.mongodb.input.MongoDBInput;
+import br.com.fd.dataintegration.core.step.mongodb.output.MongoDBOutput;
 import br.com.fd.dataintegration.core.step.rest.RestClient;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
@@ -17,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 		@Type(value = JsonInput.class, name = JsonInput.TYPE),
 		@Type(value = JsonOutput.class, name = JsonOutput.TYPE),
 		@Type(value = RestClient.class, name = RestClient.TYPE),
+		@Type(value = MongoDBInput.class, name = MongoDBInput.TYPE),
 		@Type(value = MongoDBOutput.class, name = MongoDBOutput.TYPE),
 		@Type(value = JoinTable.class, name = JoinTable.TYPE)
 })

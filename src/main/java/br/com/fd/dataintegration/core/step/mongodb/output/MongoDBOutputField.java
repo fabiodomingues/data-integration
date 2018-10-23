@@ -1,6 +1,6 @@
-package br.com.fd.dataintegration.core.step.mongodb;
+package br.com.fd.dataintegration.core.step.mongodb.output;
 
-public class MongoDBFields {
+public class MongoDBOutputField {
 
 	private String name;
 	private String path;

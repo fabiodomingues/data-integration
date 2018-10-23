@@ -120,6 +120,43 @@ Example:
 }
 ```
 
+## MongoDBInput
+
+| Field              | Type   | Accept variable? | Description                         |
+|--------------------|--------|------------------|-------------------------------------|
+| type               | string | N                |                                     |
+| host      	     | string | Y                |                                     |
+| port     	         | number | Y                |                                     |
+| database	         | string | Y                |                                     |
+| collection         | string | Y                |                                     |
+| inputVariable      | string | Y                |                                     |
+| query              | string | Y                |                                     |
+| fields             | array  | Y                |                                     |
+| fields.name        | string | Y                |                                     |
+| fields.path        | string | Y                |                                     |
+| fields.type        | string | N                |                                     |
+
+Example:
+
+```
+{
+    "type": "MongoDBInput",
+    "host": "localhost",
+    "port": 27017,
+    "database": "myDatabase",
+    "collection": "myCollection",
+    "inputVariable": "inputVar",
+    "query": "{ id : \"1\" }",
+    "fields": [
+        {
+            "name": "name",
+            "path": null,
+            "type": "INTEGER"
+        }
+    ]
+}
+```
+
 ## MongoDBOutput
 
 | Field              | Type   | Accept variable? | Description                         |

@@ -6,8 +6,10 @@ import br.com.fd.dataintegration.core.step.join.JoinTableRunner;
 import br.com.fd.dataintegration.core.step.json.input.JsonInput;
 import br.com.fd.dataintegration.core.step.json.input.JsonInputRunner;
 import br.com.fd.dataintegration.core.step.json.output.JsonOutput;
-import br.com.fd.dataintegration.core.step.mongodb.MongoDBOutput;
-import br.com.fd.dataintegration.core.step.mongodb.MongoDBOutputRunner;
+import br.com.fd.dataintegration.core.step.mongodb.input.MongoDBInput;
+import br.com.fd.dataintegration.core.step.mongodb.input.MongoDBInputRunner;
+import br.com.fd.dataintegration.core.step.mongodb.output.MongoDBOutput;
+import br.com.fd.dataintegration.core.step.mongodb.output.MongoDBOutputRunner;
 import br.com.fd.dataintegration.core.step.rest.RestClient;
 import br.com.fd.dataintegration.core.step.Step;
 import br.com.fd.dataintegration.core.step.json.output.JsonOutputRunner;
@@ -40,6 +42,7 @@ public class FlowRunner {
 			case JsonInput.TYPE: return new JsonInputRunner();
 			case JsonOutput.TYPE: return new JsonOutputRunner();
 			case RestClient.TYPE: return new RestClientRunner();
+			case MongoDBInput.TYPE: return new MongoDBInputRunner();
 			case MongoDBOutput.TYPE: return new MongoDBOutputRunner();
 			case JoinTable.TYPE: return new JoinTableRunner();
 		}
